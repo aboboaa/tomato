@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>主页</title>
+		<link rel="shortcut icon" href="img/favicon.png" />
+		<link rel="stylesheet" href="style.css" />
+		<link rel='stylesheet' id='bootstrap-css-css' th:href="@{css/bootstrap5152.css}"  type='text/css' media='all' />
+		<link rel='stylesheet' id='responsive-css-css' th:href="@{css/responsive5152.css}" href='css/responsive5152.css?ver=1.0' type='text/css' media='all' />
+		<link rel='stylesheet' id='main-css-css' th:href="@{css/main5152.css}" href='css/main5152.css?ver=1.0' type='text/css' media='all' />
+	</head>
+
+	<body>
+		<!-- Start of Header -->
+		<div class="header-wrapper">
+			<header>
+				<div class="container">
+
+					<div class="logo-container">
+						<!-- Website Logo -->
+
+						<span class="tag-line" style="font-size: 30px; color: #F9F9F9;">西红柿社区</span>
+					</div>
+
+					<!-- Start of Main Navigation -->
+					<nav class="main-nav">
+						<div class="menu-top-menu-container">
+							<ul id="menu-top-menu" class="clearfix">
+								<li class="current-menu-item">
+									<a href="/main">主页</a>
+								</li>
+								<li>
+									<a href="/info" th:text="${session.user_name}">个人信息</a>
+								</li>
+								<li>
+									<a href="home-categories-articles.html">热搜榜</a>
+								</li>
+								<li>
+									<a href="articles-list.html">文章列表</a>
+								</li>
+								<li>
+									<a href="faq.html">常见问题</a>
+								</li>
+								<li>
+									<a href="contact.html">联系</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+					<!-- End of Main Navigation -->
+
+				</div>
+			</header>
+		</div>
+		<!-- End of Header -->
+
+		<!-- Start of Search Wrapper -->
+		<div class="search-area-wrapper">
+			<div class="search-area container">
+				<h3 class="search-header">你有什么问题?</h3>
+				<p class="search-tag-line">如果你有任何问题，你可以在下面输入你正在寻找的!</</p>
+
+				<form id="search-form" class="search-form clearfix" th:action="@{/findPost}" method="get" action="#" autocomplete="off">
+					<input class="search-term required" type="text" id="findTitle" name="findTitle" placeholder="在这里输入搜索词" title="* 请输入搜索项!" />
+					<input class="search-btn" type="submit" value="搜索" />
+					<div id="search-error-container"></div>
+				</form>
+			</div>
+		</div>
+		<!-- End of Search Wrapper -->
+
+		<!-- Start of Page Container -->
+		<div class="page-container">
+			<div class="container">
+				<div class="row">
+
+					<!-- start of page content -->
+					<div class="span8 page-content">
+
+						<!-- Basic Home Page Template -->
+						<div class="row separator">
+
+							<section class="span4 articles-list">
+								<h3>最新帖子</h3>
+								<ul class="articles">
+									<div  th:each="post : ${pageInfo2.list}">
+										<li class="article-entry standard">
+
+											<h4><a href="#" th:href="@{/post/}+${post.post_id}" th:text="${post.title}">将WordPress与您的网站集成</a></h4>
+											<span class="article-meta"th:text="${post.time}">25 Feb, 2013 in <a href="#">Server &amp; Database</a></span>
+											<span class="like-count" th:text="${post.p_click_count}">4</span>
+
+									</li>
+									</div>
+								</ul>
+							</section>
+						</div>
+					</div>
+
+					<!-- end of page content -->
+
+					<!-- start of sidebar -->
+
+					<!-- end of sidebar -->
+				</div>
+				<table class="gridtable" style="width:100%;text-align: center;">
+					<tr>
+						<td width="10%" th:if="${pageInfo2.hasPreviousPage}">
+							<a th:href="'?pageNo=1'">首页</a>
+						</td>
+						<td width="10%" th:if="${pageInfo2.hasPreviousPage}">
+							<a th:href="'?pageNo='+${pageInfo2.prePage}">上一页</a>
+						</td>
+						<td width="10%" th:each="nav : ${pageInfo2.navigatepageNums}">
+							<a th:href="'?pageNo='+${nav}" th:text="${nav}" th:if="${nav != pageInfo2.pageNum}"></a>
+							<span style="font-weight: bold" th:if="${nav == pageInfo2.pageNum}" th:text="${nav}"></span>
+						</td>
+						<td width="10%" th:if="${pageInfo2.hasNextPage}">
+							<a th:href="'?pageNo='+${pageInfo2.nextPage}">下一页</a>
+						</td>
+						<td width="10%" th:if="${pageInfo2.hasNextPage}">
+							<a th:href="'?pageNo='+${pageInfo2.pages}">尾页</a>
+						</td>
+					</tr>
+				</table>
+				<div>
+                    <hr>
+                    <br>
+                    <h2>这里发帖：</h2>
+                    <br>
+					<form th:action="@{/doPost/}+${session.user_id}" action="/doPost/" method="post">
+						<input type="text" name="title" style="width: 1000px" placeholder="这是标题">
+						<textarea class="form-control" name="p_content" rows="4" cols="10" style="width: 1000px"></textarea><br><br>
+
+						<input class="btn btn-primary btn-lg active" type="submit" name="发表帖子">
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div>
+			<br>
+			<br>
+		</div>
+
+
+
+
+
+		<div id="footer-bottom-wrapper">
+			<div id="footer-bottom" class="container">
+				<div class="row">
+					@xihongsishequ.com
+					@第六组
+
+				</div>
+			</div>
+		</div>
+		<!-- End of Footer Bottom -->
+
+		</footer>
+		<!-- End of Footer -->
+
+		<a href="#top" id="scroll-top"></a>
+
+		<!-- script -->
+		<script type='text/javascript' src='js/jquery-1.8.3.min.js'></script>
+
+	</body>
+
+</html>

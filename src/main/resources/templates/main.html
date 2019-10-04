@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>主页</title>
+		<link rel="shortcut icon" href="img/favicon.png" />
+		<link rel='stylesheet' id='bootstrap-css-css' th:href="@{css/bootstrap5152.css}"  type='text/css' media='all' />
+		<link rel='stylesheet' id='responsive-css-css' th:href="@{css/responsive5152.css}" href='css/responsive5152.css?ver=1.0' type='text/css' media='all' />
+		<link rel='stylesheet' id='main-css-css' th:href="@{css/main5152.css}" href='css/main5152.css?ver=1.0' type='text/css' media='all' />
+	</head>
+
+	<body>
+		<!-- Start of Header -->
+		<div class="header-wrapper">
+			<header>
+				<div class="container">
+
+					<div class="logo-container">
+						<!-- Website Logo -->
+
+						<span class="tag-line" style="font-size: 30px; color: #F9F9F9;">西红柿社区</span>
+					</div>
+
+					<!-- Start of Main Navigation -->
+					<nav class="main-nav">
+						<div class="menu-top-menu-container">
+							<ul id="menu-top-menu" class="clearfix">
+								<li class="current-menu-item">
+									<a href="/main">主页</a>
+								</li>
+								<li>
+									<a href="/info" th:text="${session.user_name}">个人信息</a>
+								</li>
+								<li>
+									<a href="home-categories-articles.html">热搜榜</a>
+								</li>
+								<li>
+									<a href="articles-list.html">文章列表</a>
+								</li>
+								<li>
+									<a href="faq.html">常见问题</a>
+								</li>
+								<li>
+									<a href="contact.html">联系</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+					<!-- End of Main Navigation -->
+
+				</div>
+			</header>
+		</div>
+		<!-- End of Header -->
+
+		<!-- Start of Search Wrapper -->
+		<div class="search-area-wrapper">
+			<div class="search-area container">
+				<h3 class="search-header">你有什么问题?</h3>
+				<p class="search-tag-line">如果你有任何问题，你可以在下面输入你正在寻找的!</p>
+
+				<form id="search-form" class="search-form clearfix" th:action="@{/findPost}" method="get" action="#" autocomplete="off">
+					<input class="search-term required" type="text" id="findTitle" name="findTitle" placeholder="在这里输入搜索词" title="* 请输入搜索项!" />
+					<input class="search-btn" type="submit" value="搜索" />
+					<div id="search-error-container"></div>
+				</form>
+			</div>
+		</div>
+		<!-- End of Search Wrapper -->
+
+		<!-- Start of Page Container -->
+		<div class="page-container">
+			<div class="container">
+				<div class="row">
+
+					<!-- start of page content -->
+					<div class="span8 page-content">
+
+						<!-- Basic Home Page Template -->
+						<div class="row separator">
+							<section class="span4 articles-list">
+								<h3>专题文章</h3>
+								<ul class="articles">
+									<li class="article-entry standard">
+										<h4><a href="post.html">将WordPress与您的网站集成</a></h4>
+										<span class="article-meta">25 Feb, 2013 in <a href="#" title="View all posts in Server &amp; Database">Server &amp; Database</a></span>
+										<span class="like-count">66</span>
+									</li>
+									<li class="article-entry standard">
+										<h4><a href="post.html">WordPress站点维护</a></h4>
+										<span class="article-meta">24 Feb, 2013 in <a href="#" title="View all posts in Website Dev">Website Dev</a></span>
+										<span class="like-count">15</span>
+									</li>
+									<li class="article-entry video">
+										<h4><a href="post.html">WordPress中的Meta标签</a></h4>
+										<span class="article-meta">23 Feb, 2013 in <a href="#" title="View all posts in Website Dev">Website Dev</a></span>
+										<span class="like-count">8</span>
+									</li>
+									<li class="article-entry image">
+										<h4><a href="post.html">用你的语言写WordPress</a></h4>
+										<span class="article-meta">22 Feb, 2013 in <a href="#" title="View all posts in Advanced Techniques">Advanced Techniques</a></span>
+										<span class="like-count">6</span>
+									</li>
+									<li class="article-entry standard">
+										<h4><a href="post.html">知道你的消息</a></h4>
+										<span class="article-meta">22 Feb, 2013 in <a href="#" title="View all posts in Website Dev">Website Dev</a></span>
+										<span class="like-count">2</span>
+									</li>
+									<li class="article-entry standard">
+										<h4><a href="post.html">验证一个网站</a></h4>
+										<span class="article-meta">21 Feb, 2013 in <a href="#" title="View all posts in Website Dev">Website Dev</a></span>
+										<span class="like-count">3</span>
+									</li>
+								</ul>
+							</section>
+
+							<section class="span4 articles-list">
+								<h3>最新帖子</h3>
+								<ul class="articles">
+									<div  th:each="post : ${pageInfo.list}">
+									<li class="article-entry standard">
+
+										<h4><a href="#" th:href="@{/post/}+${post.post_id}" th:text="${post.title}">将WordPress与您的网站集成</a></h4>
+										<span class="article-meta"th:text="${post.time}">25 Feb, 2013 in <a href="#">Server &amp; Database</a></span>
+										<span class="like-count" th:text="${post.p_click_count}">4</span>
+
+									</li>
+									</div>
+								</ul>
+							</section>
+						</div>
+					</div>
+
+					<!-- end of page content -->
+
+					<!-- start of sidebar -->
+					<aside class="span4 page-sidebar">
+
+						<section class="widget">
+							<div class="support-widget">
+								<h3 class="title">支持</h3>
+								<p class="intro">需要更多的支持?如果您没有找到答案，请联系我们寻求进一步的帮助。</p>
+							</div>
+						</section>
+
+						<section class="widget">
+							<div class="quick-links-widget">
+								<h3 class="title">快速链接</h3>
+								<ul id="menu-quick-links" class="menu clearfix">
+									<li>
+										<a href="index-2.html">主页</a>
+									</li>
+									<li>
+										<a href="articles-list.html">文章列表</a>
+									</li>
+									<li>
+										<a href="faq.html">常见问题</a>
+									</li>
+									<li>
+										<a href="contact.html">联系</a>
+									</li>
+								</ul>
+							</div>
+						</section>
+
+						<section class="widget">
+							<h3 class="title">标签</h3>
+							<div class="tagcloud">
+								<a href="#" class="btn btn-mini">基本</a>
+								<a href="#" class="btn btn-mini">初学者</a>
+								<a href="#" class="btn btn-mini">博客</a>
+								<a href="#" class="btn btn-mini">颜色</a>
+								<a href="#" class="btn btn-mini">css</a>
+								<a href="#" class="btn btn-mini">日期</a>
+								<a href="#" class="btn btn-mini">设计</a>
+								<a href="#" class="btn btn-mini">文件</a>
+								<a href="#" class="btn btn-mini">设计</a>
+								<a href="#" class="btn btn-mini">标题r</a>
+								<a href="#" class="btn btn-mini">图像</a>
+								<a href="#" class="btn btn-mini">插件</a>
+								<a href="#" class="btn btn-mini">设置</a>
+								<a href="#" class="btn btn-mini">模板</a>
+								<a href="#" class="btn btn-mini">主题</a>
+								<a href="#" class="btn btn-mini">时间</a>
+								<a href="#" class="btn btn-mini">视频</a>
+								<a href="#" class="btn btn-mini">网站</a>
+								<a href="#" class="btn btn-mini">wordpress</a>
+							</div>
+						</section>
+
+					</aside>
+					<!-- end of sidebar -->
+				</div>
+				<table class="gridtable" style="width:100%;text-align: center;">
+					<tr>
+						<td width="10%" th:if="${pageInfo.hasPreviousPage}">
+							<a th:href="'?pageNo=1'">首页</a>
+						</td>
+						<td width="10%" th:if="${pageInfo.hasPreviousPage}">
+							<a th:href="'?pageNo='+${pageInfo.prePage}">上一页</a>
+						</td>
+						<td width="10%" th:each="nav : ${pageInfo.navigatepageNums}">
+							<a th:href="'?pageNo='+${nav}" th:text="${nav}" th:if="${nav != pageInfo.pageNum}"></a>
+							<span style="font-weight: bold" th:if="${nav == pageInfo.pageNum}" th:text="${nav}"></span>
+						</td>
+						<td width="10%" th:if="${pageInfo.hasNextPage}">
+							<a th:href="'?pageNo='+${pageInfo.nextPage}">下一页</a>
+						</td>
+						<td width="10%" th:if="${pageInfo.hasNextPage}">
+							<a th:href="'?pageNo='+${pageInfo.pages}">尾页</a>
+						</td>
+					</tr>
+				</table>
+				<div>
+                    <br>
+                    <hr>
+                    <br>
+                    <h2>这里发帖：</h2>
+                    <br>
+					<form th:action="@{/doPost/}+${session.user_id}" action="/doPost/" method="post">
+						<input type="text" name="title" style="width: 1000px" placeholder="这是标题">
+						<textarea class="form-control" name="p_content" rows="4" cols="10" style="width: 1000px"></textarea><br><br>
+
+						<input class="btn btn-primary btn-lg active" type="submit" name="发表帖子">
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div>
+			<br>
+			<br>
+		</div>
+
+
+
+
+
+		<div id="footer-bottom-wrapper">
+			<div id="footer-bottom" class="container">
+				<div class="row">
+					@xihongsishequ.com
+					@第六组
+
+				</div>
+			</div>
+		</div>
+		<!-- End of Footer Bottom -->
+
+		</footer>
+		<!-- End of Footer -->
+
+		<a href="#top" id="scroll-top"></a>
+
+		<!-- script -->
+		<script type='text/javascript' src='js/jquery-1.8.3.min.js'></script>
+
+	</body>
+
+</html>

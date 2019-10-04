@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <link type="text/css" rel="stylesheet" href="css/core.css">
+    <link type="text/css" rel="stylesheet" href="css/icon.css">
+    <link type="text/css" rel="stylesheet" href="css/home.css">
+</head>
+<body>
+<header class="ydc-header">
+    <div class="ydc-entered">
+        <div class="ydc-header-content ydc-flex">
+            <div class="ydc-column">
+                <div class="ydc-column-user">
+                    <div class="ydc-user-photo">
+                        <a href="javascript:;">
+                            <img src="/getPhotoImage" title="" about="" alt="">
+                        </a>
+                    </div>
+                    <div class="ydc-user-info">
+                        <!--<div class="ydc-user-info-name">-->
+                            <!--<a href="javascript:;"th:text="${session.user.getUser_name()}></a>-->
+                        <!--</div>-->
+                        <div class="ydc-user-info-func ydc-flex">
+                            <span class="ydc-tag">账号审核中</span>
+                            <span class="ydc-mal"><i class="ydc-icon ydc-icon-mail fl"></i><em>12</em></span>
+                            <a href="login.html">退出</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- head YDC end -->
+
+<!-- content YDC begin -->
+<section>
+    <div class="ydc-content-slide ydc-body">
+        <div class="ydc-flex">
+            <!-- left begin -->
+            <div class="ydc-column ydc-column-2">
+                <div class="ydc-menu">
+                    <ul>
+                        <li class="ydc-menu-item">
+                            <a href="/main" class="">
+                                <i class="ydc-icon ydc-icon-home fl"></i>
+                                首页
+                            </a>
+                        </li>
+                        <li class="ydc-menu-item">
+                                    <span class="ydc-menu-sub-title">
+                                        <i class="ydc-icon ydc-icon-set fl"></i>
+                                        设置
+
+                                    </span>
+                            <ul>
+                                <li>
+                                    <a href="info.html" class="active">账号信息</a>
+                                </li>
+                                <li>
+                                    <a href="info-edit.html">账号管理</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- left end -->
+            <!-- right begin -->
+            <div class="ydc-column ydc-column-8">
+                <div class="ydc-release-content">
+                    <div class="ydc-tabPanel ydc-tabPanel-release">
+                        <div class="ydc-release-tab-head">
+                            <ul>
+                                <li class="hit">帐号设置</li>
+                            </ul>
+                        </div>
+                        <div class="ydc-panes">
+                            <div class="ydc-pane ydc-pane-clear" style="display:block;">
+                                <div class="ydc-reg-form-group clearfix">
+                                    <label>帐号名称</label>
+                                    <div class="ydc-reg-form-input">
+                                   <label th:text="${session.user.getUser_name()}"></label>
+                                       <!-- <span th:text="${session.user_name}"></span>-->
+                                    </div>
+                                </div>
+                                <div class="ydc-reg-form-group clearfix">
+                                    <label>帐号头像</label>
+                                    <div class="ydc-reg-form-input">
+                                        <label></label>
+                                        <div class="ydc-reg-form-text ydc-reg-form-user-logo">
+                                            <img src="/getPhotoImage" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                             <!--   <div class="ydc-reg-form-group clearfix">
+                                    <label>帐号详情</label>
+                                    <div class="ydc-reg-form-input">
+                                        <label>一拳，让您多懂一点拳头的常识，在这里，<br>你会看到一拳超人的魅力</label>
+                                    </div>
+                                </div>-->
+                          <!--      <div class="ydc-reg-form-group clearfix">
+                                    <label>帐号背景图</label>
+                                    <div class="ydc-reg-form-input">
+                                        <label>默认</label>
+                                    </div>
+                                </div>-->
+                                <div class="ydc-reg-form-group clearfix">
+                                    <label>性别</label>
+                                    <div class="ydc-reg-form-input">
+                                        <label th:text="${session.user.getUser_sex()==0?'女':'男'}"></label>
+                                    </div>
+                                </div>
+                                <div class="ydc-reg-form-group clearfix">
+                                    <label>姓名</label>
+                                    <div class="ydc-reg-form-input">
+                                        <label th:text="${session.user.user_name}"></label>
+                                    </div>
+                                </div>
+                               <!-- <div class="ydc-reg-form-group clearfix">
+                                    <label>所在城市</label>
+                                    <div class="ydc-reg-form-input">
+                                        <label>Z市</label>
+                                    </div>
+                                </div>-->
+                      <!--          <div class="ydc-reg-form-group clearfix">
+                                    <label>身份证号</label>
+                                    <div class="ydc-reg-form-input">
+                                        <label>411424**********31</label>
+                                    </div>
+                                </div>
+                                <div class="ydc-reg-form-group clearfix">
+                                    <label>身份证照片</label>
+                                    <div class="ydc-reg-form-input">
+                                        <label>已提交</label>
+                                    </div>
+                                </div>-->
+                                <div class="ydc-reg-form-group clearfix">
+                                    <label>联系手机</label>
+                                    <div class="ydc-reg-form-input">
+                                        <label th:text="${session.user.getUser_pho()}"></label>
+                                    </div>
+                                </div>
+                                <div class="ydc-reg-form-group clearfix">
+                                    <label>邮箱</label>
+                                    <div class="ydc-reg-form-input">
+                                        <label th:text="${session.user.getUser_email()}">3524435@qq.com</label>
+                                        <span th:text="${session.user.getUser_email()}">3524435@qq.com</span>
+                                    </div>
+                                </div>
+                            <!--    <div class="ydc-reg-form-group clearfix">
+                                    <label>QQ/微信</label>
+                                    <div class="ydc-reg-form-input">
+                                        <label>lizy_1025</label>
+                                    </div>
+                                </div>-->
+                                <div class="ydc-reg-form-group clearfix" style="margin-top:40px;">
+                                    <div class="ydc-reg-form-button" style="margin-left:255px;">
+                                        <a class="btn fl" href="/nfoDeit">修改</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- right end -->
+        </div>
+    </div>
+
+</section>
+<!-- content YDC end -->
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+
+</body>
+</html>

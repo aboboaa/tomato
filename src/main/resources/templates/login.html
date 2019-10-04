@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	
+<head>
+		<meta charset="utf-8">
+		<title>登录界面</title>
+		<link rel="stylesheet"  href="/static/css/reset.css" />
+		<link rel="stylesheet"  href="/static/css/common.css" />
+	<script type="text/javascript"  src="/static/js/hua.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/huadong.css" />
+    <link rel="stylesheet"  href="/static/css/font-awesome.min.css" />
+    <script type="text/javascript"  src="/static/js/jquery.min.js" ></script>
+  <!--  <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>-->
+    <script type="text/javascript"   src="/static/js/common.js" ></script>
+</head>
+	<body>
+		<div class="wrap login_wrap">
+			<div class="content">
+				<div class="logo"></div>
+				<div class="login_box">	
+					
+					<div class="login_form">
+						<div class="login_title">
+							登录
+						</div>
+						<form action="/user/login" method="post">
+							
+							<div class="form_text_ipt">
+								<input name="user_pho" type="text" placeholder="手机号/邮箱">
+							</div>
+							<div class="ececk_warning"><span>手机号/邮箱不能为空</span></div>
+							<div class="form_text_ipt">
+								<input name="user_paswd" type="password" placeholder="密码">
+							</div>
+							<div class="ececk_warning"><span>密码不能为空</span></div>
+							<!--<div class="form_check_ipt">
+								<div class="left check_left">
+									<label><input name="" type="checkbox"> 下次自动登录</label>
+								</div>
+								<div class="right check_right">
+									<a href="/user/forget">忘记密码</a>
+								</div>
+							</div>-->
+                            </br>
+
+                            <div class="drag">
+                                <div class="bg"></div>
+                                <div class="text" onselectstart="return false;">请拖动滑块解锁</div>
+                                <div class="btn">&gt;&gt;</div>
+                            </div>
+
+                            <div class="form_btn">
+								<button type="submit" >登录</button>
+							</div>
+							<div class="form_reg_btn">
+								<span>还没有帐号？</span><a href="/user/regist">马上注册</a>
+                                <span th:text="${msg}" style="color: #942a25"></span>
+							</div>
+
+						</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="text-align:center;">
+</div>
+	<a href="layout.html"></a>
+	</body>
+</html>

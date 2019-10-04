@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script type="text/javascript" th:src="@{/js/jquery.min.js}" ></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link type="text/css" rel="stylesheet" href="css/core.css">
+    <link type="text/css" rel="stylesheet" href="css/icon.css">
+    <link type="text/css" rel="stylesheet" href="css/home.css">
+   <!-- <script type="text/javascript">
+        function submitForm1(){
+            document.getElementById("form1").submit();
+        }
+        function submitForm2(){
+            document.getElementById("form2").submit();
+        }
+        </script>-->
+
+</head>
+<body>
+
+<!-- head YDC begin -->
+<header class="ydc-header">
+    <div class="ydc-entered">
+        <div class="ydc-header-content ydc-flex">
+            <div class="ydc-column">
+                <div class="ydc-column-user">
+                    <div class="ydc-user-photo">
+                        <a href="javascript:;">
+                            <img src="img/user-logo.jpg" title="" about="" alt="">
+                        </a>
+                    </div>
+                    <div class="ydc-user-info">
+                        <div class="ydc-user-info-name">
+                            <a href="javascript:;">琦玉</a>
+                        </div>
+                        <div class="ydc-user-info-func ydc-flex">
+                            <span class="ydc-tag">账号审核中</span>
+                            <span class="ydc-mal"><i class="ydc-icon ydc-icon-mail fl"></i><em>12</em></span>
+                            <a href="javascript:;">退出</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- head YDC end -->
+
+<!-- content YDC begin -->
+<section>
+    <div class="ydc-content-slide ydc-body">
+        <div class="ydc-flex">
+            <!-- left begin -->
+            <div class="ydc-column ydc-column-2">
+                <div class="ydc-menu">
+                    <ul>
+                        <li class="ydc-menu-item">
+                            <a href="../templates/login.html" class="">
+                                <i class="ydc-icon ydc-icon-home fl"></i>
+                                首页
+                            </a>
+                        </li>
+                        <li class="ydc-menu-item">
+                                    <span class="ydc-menu-sub-title">
+                                        <i class="ydc-icon ydc-icon-set fl"></i>
+                                        设置
+
+                                    </span>
+                            <ul>
+                                <li>
+                                    <a href="../templates/info.html" class="active">账号信息</a>
+                                </li>
+                                <li>
+                                    <a href="info-edit.html">账号管理</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- left end -->
+            <!-- right begin -->
+            <div class="ydc-column ydc-column-8">
+                <div class="ydc-release-content">
+                    <div class="ydc-tabPanel ydc-tabPanel-release">
+                        <div class="ydc-release-tab-head">
+                            <ul>
+                                <li class="hit">帐号设置</li>
+                            </ul>
+                        </div>
+                        <div class="ydc-panes">
+                            <form  action="/editUser" method="post">
+
+                                <div class="ydc-reg-form-class ydc-reg-form-reg" style="margin-top:40px;">
+                                    <div class="ydc-reg-form-group clearfix">
+                                        <label>帐号名称:</label>
+                                        <div class="ydc-reg-form-input">
+                                            <input type="text" id="loginEmail" name="userName" class="ydc-form-control" autocomplete="off" th:placeholder="${session.user_name}" placeholder="西红柿社区" style="width:200px;">
+                                            <div class="ydc-reg-form-text">
+                                                <p>请输入2至14字的帐号名称</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--                                    <div class="ydc-reg-form-group clearfix">-->
+<!--                                        <label>个性签名:</label>-->
+<!--                                        <div class="ydc-reg-form-input ydc-reg-form-input-width">-->
+<!--                                            <textarea></textarea>-->
+<!--                                            <div class="ydc-reg-form-text">-->
+<!--                                                <p>请输入2至14字的个性签名</p>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <div class="ydc-reg-form-group clearfix">
+                                        <label>姓名:</label>
+                                        <div class="ydc-reg-form-input">
+                                            <input type="text" id="user1" name="lastName" class="ydc-form-control" autocomplete="off" th:placeholder="${session.user_name}" placeholder="李嘉桦">
+                                        </div>
+                                    </div>
+<!--                                    <div class="ydc-reg-form-group clearfix">-->
+<!--                                        <label>身份证号:</label>-->
+<!--                                        <div class="ydc-reg-form-input clearfix">-->
+<!--                                            <input type="text" id="user2" name="username" class="ydc-form-control" autocomplete="off" placeholder="411424199108070665">-->
+<!--                                        </div>-->
+
+<!--                                    </div>-->
+<!--                                    <div class="ydc-reg-form-group clearfix">-->
+<!--                                        <label>所在城市:</label>-->
+<!--                                        <div class="ydc-reg-form-input">-->
+<!--                                            <select name="province" id="province">-->
+<!--                                                <option value="请选择城市">请选择省份</option>-->
+<!--                                            </select>-->
+<!--                                            <select name="city" id="city">-->
+<!--                                                <option value="请选择城市">请选择城市</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+
+<!--                                    </div>-->
+                                    <div class="ydc-reg-form-group clearfix">
+                                        <label>联系手机:</label>
+                                        <div class="ydc-reg-form-input">
+                                            <input type="text" id="user4" name="userPho" class="ydc-form-control" autocomplete="off" th:placeholder="${session.user.getUser_pho()}" placeholder="18519232899">
+<!--                                            <div class="ydc-reg-form-text">-->
+<!--                                                <p>请输入手机号并验证</p>-->
+<!--                                            </div>-->
+                                        </div>
+<!--                                        <div class="ydc-reg-yzm">-->
+<!--                                            <button>获取验证码</button>-->
+<!--                                        </div>-->
+
+
+                                    </div>
+                                    <div class="ydc-reg-form-group clearfix">
+                                        <label>邮箱:</label>
+                                        <div class="ydc-reg-form-input">
+                                            <input type="text" id="user5" name="userEamil" class="ydc-form-control" autocomplete="off" th:placeholder="${session.user.getUser_email()}" placeholder="aui_cn@163.com">
+                                        </div>
+                                        <div class="ydc-reg-form-text">
+                                            <p>请使用自己日常使用邮箱便于接受相关信息</p>
+                                        </div>
+                                    </div>
+<!--                                    <div class="ydc-reg-form-group clearfix">-->
+<!--                                        <label>QQ/微信号:</label>-->
+<!--                                        <div class="ydc-reg-form-input">-->
+<!--                                            <input type="text" id="user6" name="username" class="ydc-form-control" autocomplete="off" placeholder="li_3104">-->
+<!--                                        </div>-->
+<!--                                        <div class="ydc-reg-form-text">-->
+<!--                                            <p>请输入常用QQ/微信号方便联系沟通</p>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <div class="ydc-reg-form-group clearfix">
+                                        <label></label>
+                                        <div class="ydc-reg-form-input ydc-reg-form-input-agreement">
+                                            <label><input type="checkbox" value="yes" id="agreement" checked=""> 我已经阅读并同意 <a href="agreement.html" target="_blank">《西红柿社区开放平台注册协议》</a>。</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ydc-reg-form-group">
+                                    <div class="ydc-reg-form-button" style="margin-left:255px;">
+
+                                        <input class="btn fl"  name="保存" value="保存" onclick="submitForm1()">
+                                    </div>
+                                </div>
+                            </form>
+                            <form action="/uploadimg" method="post"  enctype="multipart/form-data">
+                                    <div class="ydc-reg-form-group clearfix">
+                            <div class="ydc-reg-form-input">
+                                <input type="file" name="file">
+                                <button type="submit">上传照片</button>
+                                <!--<div class="ydc-reg-form-text">
+                                    <p>选取至少160*160尺寸的图片。</p >
+                                </div>-->
+                            </div>
+                        </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- right end -->
+        </div>
+    </div>
+
+</section>
+<!-- content YDC end -->
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/city.js"></script>
+
+
+
+</body>
+</html>

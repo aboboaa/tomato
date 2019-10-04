@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>主页</title>
+		<link rel="shortcut icon" href="img/favicon.png" />
+		<link rel="stylesheet" href="style.css" />
+		<link rel='stylesheet' id='locc-css-css' th:href="@{/css/locc.css}" type='text/css' media='all' />
+		<link rel='stylesheet' id='bootstrap-css-css' th:href="@{/css/bootstrap5152.css}" type='text/css' media='all' />
+		<link rel='stylesheet' id='responsive-css-css' th:href="@{/css/responsive5152.css}" href='../../static/css/responsive5152.css?ver=1.0' type='text/css' media='all' />
+		<link rel='stylesheet' id='main-css-css' th:href="@{/css/main5152.css}" href='../../static/css/main5152.css?ver=1.0' type='text/css' media='all' />
+	</head>
+
+	<body>
+		<!-- Start of Header -->
+		<div class="header-wrapper">
+			<header>
+				<div class="container">
+
+					<div class="logo-container">
+						<!-- Website Logo -->
+
+						<span class="tag-line" style="font-size: 30px; color: #F9F9F9;">西红柿社区</span>
+					</div>
+
+					<!-- Start of Main Navigation -->
+					<nav class="main-nav">
+						<div class="menu-top-menu-container">
+							<ul id="menu-top-menu" class="clearfix">
+								<li class="current-menu-item">
+									<a href="/main">主页</a>
+								</li>
+								<li>
+									<a href="/info" th:text="${session.user_name}">个人信息</a>
+								</li>
+								<li>
+									<a href="home-categories-articles.html">热搜榜</a>
+								</li>
+								<li>
+									<a href="articles-list.html">文章列表</a>
+								</li>
+								<li>
+									<a href="faq.html">常见问题</a>
+								</li>
+								<li>
+									<a href="contact.html">联系</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+					<!-- End of Main Navigation -->
+
+				</div>
+			</header>
+		</div>
+
+		<div class="search-area-wrapper">
+			<div class="search-area container">
+				<h3 class="search-header">你有什么问题?</h3>
+				<p class="search-tag-line">如果你有任何问题，你可以在下面输入你正在寻找的!</p>
+
+					<form id="search-form" class="search-form clearfix" th:action="@{/findPost}" method="get" action="#" autocomplete="off">
+						<input class="search-term required" type="text" id="findTitle" name="findTitle" placeholder="在这里输入搜索词" title="* 请输入搜索项!" />
+						<input class="search-btn" type="submit" value="搜索" />
+						<div id="search-error-container"></div>
+					</form>
+			</div>
+		</div>
+
+
+
+		<div class="page-container">
+			<div class="container">
+				<div class="row" style="text-align: center">
+					<h2 th:text="${post.getTitle()}">123</h2>
+                    <span th:text="@{来自作者：}+${post.user.getUser_name()}+@{日期：}+${post.getTime()}"></span>
+                    <h4><span th:text="${post.getP_content()}"></span></h4>
+
+					<aside class="span4 page-sidebar">
+					</aside>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <hr>
+				</div>
+
+				<div class="comment_list">
+					<h2 >全部评论</h2>
+					<hr>
+					<div class="comment" th:each="reply : ${rePageInfo.list}">
+						<div class="imgdiv"><img class="imgcss"      src="/img/u.jpg"/></div>
+						<div class="conmment_details">
+							<span class="comment_name" th:text="${reply.getUser().getUser_name()}">大白 </span>     <span th:text="${reply.getTime()}">22分钟前</span>
+							<div class="comment_content" th:text="${reply.getR_content()}">  感觉林丹越来越帅了，好棒</div>
+							<div class="del"> <i class="icon layui-icon" th:text="${reply.getP_click_count()}" >点赞</i>
+								<a class="del_comment" data-id="1"> <i class="icon layui-icon" >删除</i></a>
+							</div>
+						</div>
+						<hr>
+					</div>
+				</div>
+				<br>
+				<hr>
+				<br>
+				<table class="gridtable" style="width:100%;text-align: center;">
+					<tr>
+						<td width="10%" th:if="${rePageInfo.hasPreviousPage}">
+							<a th:href="'?pageNo=1'">首页</a>
+						</td>
+						<td width="10%" th:if="${rePageInfo.hasPreviousPage}">
+							<a th:href="'?pageNo='+${rePageInfo.prePage}">上一页</a>
+						</td>
+						<td width="10%" th:each="nav : ${rePageInfo.navigatepageNums}">
+							<a th:href="'?pageNo='+${nav}" th:text="${nav}" th:if="${nav != rePageInfo.pageNum}"></a>
+							<span style="font-weight: bold" th:if="${nav == rePageInfo.pageNum}" th:text="${nav}"></span>
+						</td>
+						<td width="10%" th:if="${rePageInfo.hasNextPage}">
+							<a th:href="'?pageNo='+${rePageInfo.nextPage}">下一页</a>
+						</td>
+						<td width="10%" th:if="${rePageInfo.hasNextPage}">
+							<a th:href="'?pageNo='+${rePageInfo.pages}">尾页</a>
+						</td>
+					</tr>
+				</table>
+				<br>
+				<br>
+				<hr>
+				<h2>这里评论：</h2>
+				<br>
+				<div>
+					<form th:action="@{/doReply/}+${post.getPost_id()}+@{/}+${session.user_id}" method="post" action="/doRply/">
+					<textarea class="form-control" name="r_content" rows="4" cols="10" style="width: 1000px"></textarea><br><br><input class="btn btn-primary btn-lg active" type="submit" name="回复">
+					</form>
+				</div>
+
+			</div>
+		</div>
+
+
+		<div>
+			<br>
+			<br>
+		</div>
+
+
+		<div id="footer-bottom-wrapper">
+			<div id="footer-bottom" class="container">
+				<div class="row">
+					@xihongsishequ.com
+					@第六组
+
+				</div>
+			</div>
+		</div>
+		<!-- End of Footer Bottom -->
+
+		</footer>
+		<!-- End of Footer -->
+
+		<a href="#top" id="scroll-top"></a>
+
+		<!-- script -->
+		<script type='text/javascript' th:src="@{/js/jquery-1.8.3.min.js}" src='../../static/js/jquery-1.8.3.min.js'></script>
+		<script type='text/javascript' th:src="@{/js/sss.js}" src='../../static/js/sss.js'></script>
+	</body>
+
+</html>
